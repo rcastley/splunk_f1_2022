@@ -168,6 +168,7 @@ def lookup_packet_id(packet_id):
 @background.task
 def send_metric(f1_metrics, f1_dimensions):
     telemetry_json = []
+    f1_dimensions['f1-2022-hostname'] = hostname
 
     for key, value in f1_metrics.items():
         telemetry_json.append({"metric": "f1_2022." + key, "value": value, "dimensions": f1_dimensions})
