@@ -1085,7 +1085,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "",
+              "label": "Speed (kph)",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -1094,7 +1094,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "",
+              "label": "Brake %",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -1121,7 +1121,7 @@
             "noDataMessage": null
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": null,
+            "dimensionInLegend": "sf_metric",
             "showLegend": false
           },
           "programOptions": {
@@ -1149,7 +1149,7 @@
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
-              "yAxis": 0
+              "yAxis": 1
             }
           ],
           "showEventLines": true,
@@ -2291,7 +2291,9 @@
             "replaceOnly": false,
             "required": false,
             "restricted": false,
-            "value": ""
+            "value": [
+              "Drivey McDriverface"
+            ]
           },
           {
             "alias": "Driver",
@@ -2305,7 +2307,25 @@
             "replaceOnly": false,
             "required": false,
             "restricted": false,
-            "value": ""
+            "value": [
+              "NORRIS"
+            ]
+          },
+          {
+            "alias": "F1 2022 Hostname",
+            "applyIfExists": false,
+            "description": "",
+            "preferredSuggestions": [],
+            "property": "f1-2022-hostname",
+            "propertyMappings": [
+              "f1-2022-hostname"
+            ],
+            "replaceOnly": false,
+            "required": true,
+            "restricted": false,
+            "value": [
+              "host_1"
+            ]
           }
         ]
       },
@@ -2318,21 +2338,11 @@
       "maxDelayOverride": null,
       "name": "F1 2022 Driver Dashboard",
       "permissions": null,
-      "selectedEventOverlays": [
-        {
-          "eventSignal": {
-            "detectorId": null,
-            "eventSearchText": "m_drs_enabled",
-            "eventType": "eventTimeSeries"
-          },
-          "overlayId": null,
-          "sources": []
-        }
-      ],
+      "selectedEventOverlays": [],
       "tags": null
     }
   },
-  "hashCode": -722788797,
+  "hashCode": 1688597549,
   "id": "FesidxDAIAA",
   "modelVersion": 1,
   "packageType": "DASHBOARD"

@@ -57,13 +57,14 @@ splunk_hec_token = config.get("ingest_settings", "splunk_hec_token")
 # SIM variables
 sim_token = config.get("ingest_settings", "sim_token")
 sim_endpoint = config.get("ingest_settings", "ingest_endpoint")
-client = signalfx.SignalFx(ingest_endpoint=sim_endpoint)
-ingest = client.ingest(sim_token)
 # Telemetry varilables     
 motion = config.getboolean("telemetry_settings", "motion")
 telemetry = config.getboolean("telemetry_settings", "telemetry")
 lap = config.getboolean("telemetry_settings","lap")
 status = config.getboolean("telemetry_settings","status")
+
+client = signalfx.SignalFx(ingest_endpoint=sim_endpoint)
+ingest = client.ingest(sim_token)
 
 print("Hostname: " + args["hostname"])
 print("Player Name: " + args["player"])
@@ -316,6 +317,7 @@ def merge_car_motion(data, header, playerCarIndex):
         telemetry = [telemetry[playerCarIndex]]
         telemetry[0].update({"player_name": player_name})
         # Get additional motion data, not stored in the main array
+        """
         telemetry[0].update({"angular_acceleration_x": data["angular_acceleration_x"]})
         telemetry[0].update({"angular_acceleration_y": data["angular_acceleration_y"]})
         telemetry[0].update({"angular_acceleration_z": data["angular_acceleration_z"]})
@@ -324,10 +326,10 @@ def merge_car_motion(data, header, playerCarIndex):
         telemetry[0].update({"angular_velocity_z": data["angular_velocity_z"]})
 
         telemetry[0].update({"frontWheelsAngle": data["frontWheelsAngle"]})
-        telemetry[0].update({"local_velocity_x": data["llocal_velocity_x"]})
+        telemetry[0].update({"local_velocity_x": data["local_velocity_x"]})
         telemetry[0].update({"local_velocity_y": data["local_velocity_y"]})
         telemetry[0].update({"local_velocity_z": data["local_velocity_z"]})
-
+        """
         # Get the per-wheel motion data for the player car
         player_car_motion_list = [
             "suspension_acceleration",
@@ -448,8 +450,8 @@ def merge_session(data, header, playerCarIndex):
         entry.update({"weather": data["weather"]})
         entry.update({"total_laps": data["total_laps"]})
         entry.update({"track_temperature": data["track_temperature"]})
+        entry.update({"track_length": data["track_length"]})
         #entry.update({"spectator_car_index": data["spectator_car_index"]})
-        #entry.update({"track_length": data["track_length"]})
         """
         entry.update({"gamePaused": data["gamePaused"]})
         entry.update({"isSpectating": data["isSpectating"]})
@@ -463,7 +465,6 @@ def merge_session(data, header, playerCarIndex):
         entry.update({"sessionTimeLeft": data["sessionTimeLeft"]})
         entry.update({"sessionType": data["sessionType"]})
         entry.update({"sliProNativeSupport": data["sliProNativeSupport"]})
-        entry.update({"trackLength": data["trackLength"]})
         """
 
     # If not in spectator mode, get rid of the non-player cars
