@@ -7,6 +7,24 @@ python3 -m venv venv
 pip3 install -r requirements.txt
 ```
 
+Edit `settings.ini`
+
+```
+[ingest_settings]
+debug = True
+sim_token = xxx
+ingest_endpoint = https://ingest.{REALM}.signalfx.com
+splunk_hec_ip = https://hec_endpoint
+splunk_hec_port = 8088
+splunk_hec_token = xxx
+
+[telemetry_settings]
+motion = True
+telemetry = True
+lap = True
+status = True
+```
+
 ```
 usage: F1_2022_Conference_ingest.py [-h] [--hostname HOSTNAME]
                                     [--player PLAYER] [--port PORT]
